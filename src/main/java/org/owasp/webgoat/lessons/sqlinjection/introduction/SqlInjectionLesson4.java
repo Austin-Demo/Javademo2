@@ -22,6 +22,7 @@
 
 package org.owasp.webgoat.lessons.sqlinjection.introduction;
 
+import java.sql.PreparedStatement;
 import static java.sql.ResultSet.CONCUR_READ_ONLY;
 import static java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE;
 
@@ -51,20 +52,21 @@ public class SqlInjectionLesson4 extends AssignmentEndpoint {
 
   @PostMapping("/SqlInjection/attack4")
   @ResponseBody
-  public AttackResult completed(@RequestParam String query) {
-    return injectableQuery(query);
-  }
+    public AttackResult completed(@RequestParam String query) {
+        return injectableQuery(query);
+    }
 
-  protected AttackResult injectableQuery(String query) {
-    try (Connection connection = dataSource.getConnection()) {
-      try (Statement statement =
-          connection.createStatement(TYPE_SCROLL_INSENSITIVE, CONCUR_READ_ONLY)) {
-        statement.executeUpdate(query);
-        connection.commit();
-        ResultSet results = statement.executeQuery("SELECT phone from employees;");
-        StringBuilder output = new StringBuilder();
-        // user completes lesson if column phone exists
-        if (results.first()) {
+    protected AttackResult injectableQuery(String query) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "UPDATE employees SET phone = ? WHERE condition"; // Adjust the query as needed
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, query);
+                statement.executeUpdate();
+                connection.commit();
+                ResultSet results = statement.executeQuery("SELECT phone from employees;");
+                StringBuilder output = new StringBuilder();
+                // user completes lesson if column phone exists
+                if (results.first()) {
           output.append("<span class='feedback-positive'>" + query + "</span>");
           return success(this).output(output.toString()).build();
         } else {
