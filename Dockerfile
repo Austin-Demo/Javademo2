@@ -37,4 +37,8 @@ ENTRYPOINT [ "java", \
    "-Dwebwolf.host=0.0.0.0", \
    "-Dwebgoat.port=8080", \
    "-Dwebwolf.port=9090", \
+# Mend traceability labels
+LABEL io.mend.image.dockerfile.path=main/Dockerfile
+LABEL org.opencontainers.image.source=https://github.com/Austin-Demo/Javademo2
+
    "-jar", "webgoat.jar" ]
