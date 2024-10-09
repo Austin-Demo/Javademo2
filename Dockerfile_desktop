@@ -26,4 +26,8 @@ RUN \
 
 ENV JAVA_HOME=/home/webgoat/jdk-17.0.6+10-jre
 
+# Mend traceability labels
+LABEL io.mend.image.dockerfile.path=main/Dockerfile_desktop
+LABEL org.opencontainers.image.source=https://github.com/Austin-Demo/Javademo2
+
 WORKDIR /config/Desktop
