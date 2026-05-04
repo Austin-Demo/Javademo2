@@ -30,12 +30,12 @@ jobs:
                   restore-keys: ${{ runner.os }}-m2
 
             - id: reponame
-              uses: ASzc/change-string-case-action@v6
+              uses: ASzc/change-string-case-action@v8
               with:
                   string: ${{github.event.repository.name}}
 
             - id: orgname
-              uses: ASzc/change-string-case-action@v6
+              uses: ASzc/change-string-case-action@v8
               with:
                 string: ${{github.repository_owner}}
         
