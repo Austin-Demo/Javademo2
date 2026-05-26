@@ -141,7 +141,7 @@
     <webdriver.version>4.3.1</webdriver.version>
     <webgoat.port>8080</webgoat.port>
     <webwolf.port>9090</webwolf.port>
-    <wiremock.version>2.27.2</wiremock.version>
+    <wiremock.version>3.0.1</wiremock.version>
     <xml-resolver.version>1.2</xml-resolver.version>
     <xstream.version>1.4.5</xstream.version>
     <!-- do not update necessary for lesson -->
