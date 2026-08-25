@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "event-source-polyfill": "1.0.26",
-    "faker": "5.5.3",
+    "@faker-js/faker": "5.5.3",
     "@mend-eicar/hello-world": "1.0.0"
   }
 }
